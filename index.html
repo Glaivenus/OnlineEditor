@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/addlogo.js"></script>
+    <script src="./js/fontloader.js"></script>
+    <script src="./js/bg.js"></script>
+    <script src="./js/opacity.js"></script>
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" /> -->
+    <link href="./css/font.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./icons/iconfont.css">
+
+    <link href="./css/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./css/media.css" type="text/css" />
+    <title>手账编辑器beta</title>
+
+</head>  
+<body>
+
+<div class="canvas-container">
+    <div class="toolbox">
+        <!-- submenu -->
+        <button id="mainMenuBtn"><span class="iconfont icon-icon_tianjia"></span>添加</button>
+
+        <div id="addMenu" style="display: none;">
+            <button id="addTextBtn">文字</button>
+            
+            
+            <input type="file" id="uploadImage" hidden />
+            <button onclick="document.getElementById('uploadImage').click();">图片</button>
+
+
+            <button id="addLogoBtn" onclick="addLogoToCanvas()">图标</button>
+        </div>
+
+        <!-- add text -->
+        <div id="addTextPopup" class="popup" style="display: none;">Color:
+            <input type="color" id="textColor" value="#000000" style="height: 5vh; width: 10vh;">
+            <textarea id="textArea" placeholder="Text here..." style="width: 90%;" ></textarea>
+
+            <select id="fontSelector">
+                <option value="Arial">Arial</option>
+                <option value="Ephesis">Ephesis</option>
+                <option value="MaShanZheng">MaShanZheng</option>
+                <option value="Times New Roman">Times New Roman</option>
+            </select>
+
+            
+            <button id="" onclick="addTextToCanvas()" style="margin-right: 5%;">添加文字</button>
+            <button onclick="closeAddTextPopup()">取消</button>
+        
+        </div>
+
+            <button id="changeBackgroundBtn" onclick="showBackgroundPopup()"><span class="iconfont icon-iframetianjia"></span>背景</button>
+
+            <button id="modifyBtn" onclick="openModifyPopup()"><span class="iconfont icon-bianji"></span>编辑选中</button>
+
+
+<!-- 
+            <button onclick="undoOperate()">撤销</button>
+            <button onclick="redoOperate()">重做</button> -->
+            
+
+
+
+
+            <button id="deleteBtn" onclick="deleteSelectedObject()"><span class="iconfont icon-shanchu"></span>删除</button>
+
+
+        
+    
+    </div>
+
+    <button id="downloadBtn" style="background-color: rgb(173, 46, 46);color: white; margin-left: 5%;"><span class="iconfont icon-xiazaidaoru"></span>下载</button>
+
+    <canvas id="pic1" ></canvas>
+</div>
+
+
+<!-- change selected text -->
+<div id="modifyPopup" class="popup">
+    <textarea id="modifyTextArea"></textarea>
+    <input type="color" id="modifyTextColor" value="#000000">
+    <select id="modifyFontSelector">
+        <option value="Arial">Arial</option>     
+        <option value="Ephesis">Ephesis</option>
+        <option value="MaShanZheng">MaShanZheng</option>
+        <option value="Times New Roman">Times New Roman</option>
+    </select>
+
+
+    <button onclick="modifySelectedText()">保存修改</button>
+</div>
+
+<!-- change BG -->
+<div id="backgroundPopup" class="popup" style="color: white;">
+    背景类型：
+    <select id="backgroundCategory">
+        
+        <option value="Craft-Paper">牛皮纸</option>
+        <option value="star">星空</option>
+
+        <!-- CATEGORIES -->
+    </select>
+    <br>
+    透明度：
+    <div>
+        <input type="range" id="backgroundOpacitySlider" min="0" max="1" step="0.01" value="1">
+        <span id="backgroundOpacityValue">100%</span>
+    </div>
+
+
+    <div id="thumbnailContainer"></div>
+
+    <input type="file" id="uploadBackgroundImage" hidden />
+
+
+
+    <div class="buttonarea">
+    <button onclick="document.getElementById('uploadBackgroundImage').click();">上传背景</button>    
+
+    <button onclick="closeBackgroundPopup()">取消</button>
+    </div>
+
+</div>
+
+<script src="./js/touch.js"></script>
+<script>
+    var canvas = new fabric.Canvas('pic1');
+    canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
+
+    canvas.setHeight(1090.8);
+    canvas.setWidth(777.6);
+
+    var defaultText = "双击我或选中后用编辑按钮进行修改"
+
+    var currentBackground = 0;
+    var thumbnailsPerPage = 4;
+    var currentPage = 0;
+
+    function setDefaultBackground() {
+    var defaultBackgroundIndex = 0; 
+    changeBackground(defaultBackgroundIndex);
+    }
+
+
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     setDefaultBackground();
+    // });
+
+
+    updateBackgroundThumbnails();
+
+    document.getElementById('backgroundCategory').addEventListener('change', function() {
+    updateBackgroundThumbnails(this.value);
+    });
+
+
+        function updateBackgroundThumbnails(category) {
+        var thumbnailContainer = document.getElementById('thumbnailContainer');
+        thumbnailContainer.innerHTML = "";
+
+        backgrounds.forEach(function(bg) {
+            if (bg.category === category) {
+                bg.imageUrl.forEach(function(url) {
+                    var thumbnail = createThumbnail(url);
+                    thumbnail.addEventListener('click', function() {
+                        updateBackground(url);
+                    });
+                    thumbnailContainer.appendChild(thumbnail);
+                });
+            }
+        });
+    }
+
+
+        function createThumbnail(imageUrl) {
+        var thumbnail = document.createElement('div');
+        thumbnail.className = 'thumbnail';
+        var img = document.createElement('img');
+        img.src = imageUrl;
+        thumbnail.appendChild(img);
+        return thumbnail;
+    }
+
+
+
+
+
+
+    var currentCategory = 'Craft-Paper';
+    document.getElementById('backgroundCategory').addEventListener('change', function() {
+    currentCategory = this.value;
+    updateBackgroundThumbnails(currentCategory);
+    });
+
+    function showBackgroundPopup() {
+    document.getElementById('backgroundCategory').value = currentCategory;
+    document.getElementById('backgroundPopup').style.display = 'block';
+    updateBackgroundThumbnails(currentCategory);
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        addDefaultText();
+        addtkText();
+        addLogoToCanvas();
+    });
+
+
+</script>
+<script src="./js/changesize.js"></script>
+<script src="./js/stroke.js"></script>
+<script src="./js/undoredo.js"></script>
+
+
+</body>
+</html>

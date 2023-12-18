@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'Ma Shan Zheng';
+    src: url('../fonts/MaShanZheng-Regular.ttf') format('truetype');
+   
+}
+
+#pic1 {
+    border: 1px solid black;
+    width: 21.6cm; 
+    height: 30.3cm; 
+    margin-top: 10.5vh
+}
+
+body {
+    /* background: linear-gradient(to right, #ff934c, #fc686f); */
+    background: rgb(255, 255, 255);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+#textColor {
+    margin-left: 10px;   
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25vw;
+    padding: 20px;
+    background: #303030;
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 2em;
+}
+
+
+
+button {
+    background-color: #67108a;
+    color: #ffffff;
+    border:solid 1px white;
+    margin:0.5vh;
+    border-radius: 0.2rem;
+    align-self: center;
+}
+
+button:hover {
+    background-color: #701212;
+}
+
+
+.popup textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.popup button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #67108a;
+    color: #ffffff;
+    /* border:solid 1px white; */
+    cursor: pointer;
+    border-radius: 1vh;
+    font-size: 0.6em;
+    
+}
+
+#thumbnailContainer {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.thumbnail {
+    width: 45%;
+    box-sizing: border-box;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.thumbnail:hover {
+    border: 2px solid rgb(52, 52, 109);
+}
+
+.toolbox {
+    position: fixed;
+    height: 10vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    background: #303030;
+}
+
+
+
+#addMenu {
+    /* border: 1px solid #ccc; */
+    top: 10vh;
+    background-color: white;
+    position: absolute;
+    z-index: 1000;
+    display: block;
+    
+}
+
+#addMenu button {
+    font-size: 1.2em;
+    width: 100%;
+    display: block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+
+    
+}
+
+
+#mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn {
+    /* padding: 1vh 1vh 1vw 1vw; */
+    font-size: 2vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;;
+    background-color: transparent;
+    
+}
+
+
+
+#deleteBtn {
+    position: absolute;
+    right: 3vw;
+    text-align: center;
+}
+
+
+#downloadBtn {
+
+    width: 11vh;
+    height: 11vh;
+    font-size: 2vh;
+    border-radius: 50%;
+    position: fixed;
+    right: 3vw;
+    top: 85%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+   
+}
