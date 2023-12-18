@@ -12,7 +12,7 @@
     <script src="./js/addlogo.js"></script>
     <script src="./js/fontloader.js"></script>
     <script src="./js/bg.js"></script>
-    <script src="./js/opacity.js"></script>
+    <!-- <script src="./js/opacity.js"></script> -->
 
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -41,7 +41,21 @@
 
 
             <button id="addLogoBtn" onclick="addLogoToCanvas()">图标</button>
+
+            <button id="addShapeBtn">添加形状</button>
+            <div id="shapePopup" class="popup" style="display: none;">
+                <button onclick="addShape('square')">正方形</button>
+                <button onclick="addShape('rectangle')">长方形</button>
+                <button onclick="addShape('triangle')">三角形</button>
+                <button onclick="addShape('circle')">圆形</button>
+                <button onclick="addShape('star')">五角星</button>
+                <input type="number" id="cornerRadiusInput" placeholder="圆角角度">
+                <button onclick="closeShapePopup()">关闭</button>
+            </div>
+
         </div>
+
+        
 
         <!-- add text -->
         <div id="addTextPopup" class="popup" style="display: none;">Color:
@@ -81,7 +95,7 @@
     
     </div>
 
-    <button id="downloadBtn" style="background-color: rgb(173, 46, 46);color: white; margin-left: 5%;"><span class="iconfont icon-xiazaidaoru"></span>下载</button>
+    <button id="downloadBtn" style="z-index: 999;background-color: rgb(173, 46, 46);color: white; margin-left: 5%;"><span class="iconfont icon-xiazaidaoru"></span>下载</button>
 
     <canvas id="pic1" ></canvas>
 </div>
@@ -138,6 +152,9 @@
 <script>
     var canvas = new fabric.Canvas('pic1');
     canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
+
+    fabric.IText.prototype.cursorColor = 'transparent';
+
 
     canvas.setHeight(1090.8);
     canvas.setWidth(777.6);
@@ -222,6 +239,7 @@
 <script src="./js/changesize.js"></script>
 <script src="./js/stroke.js"></script>
 <script src="./js/undoredo.js"></script>
+<script src="./js/shapes.js"></script>
 
 
 </body>

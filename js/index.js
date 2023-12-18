@@ -322,3 +322,6 @@ function updateBackgroundOpacity(opacity) {
     document.getElementById('backgroundOpacityValue').textContent = Math.round(opacity * 100) + '%';
 }
 });
+
+
+
