@@ -80,62 +80,71 @@ function deleteSelectedObject() {
 
 
 
-//edit text / shapes
-document.addEventListener('DOMContentLoaded', function () {
-
-    document.getElementById('modifyBtn').addEventListener('click', function() {
-        var activeObject = canvas.getActiveObject();
-        if (activeObject) {
-            // check if Itext or textbox
-            if (activeObject.type === 'i-text' || activeObject.type === 'textbox') {
-                document.getElementById('modifyPopup').style.display = 'block';
-                document.getElementById('colorPickerPopup').style.display = 'none';
-            } else {
-                document.getElementById('colorPickerPopup').style.display = 'block';
-                document.getElementById('modifyPopup').style.display = 'none';
-            }
-        }
-    });
-    
-
-});
-
-
-
-function openModifyPopup() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject && activeObject.type === 'i-text' || activeObject.type === 'textbox') {
-        var modifyTextArea = document.getElementById('modifyTextArea');
-        var modifyFontSelector = document.getElementById('modifyFontSelector');
-
-        modifyTextArea.value = activeObject.text;
-        modifyFontSelector.value = activeObject.fontFamily || 'Arial'; 
-        document.getElementById('modifyPopup').style.display = 'block';
-    }
-}
+// //edit text / shapes
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.getElementById('modifyBtn').addEventListener('click', function() {
+//         var activeObject = canvas.getActiveObject();
+//         if (activeObject) {
+//             // Check if single textbox
+//             if (activeObject.type === 'i-text' || activeObject.type === 'textbox') {
+//                 document.getElementById('modifyPopup').style.display = 'block';
+//                 document.getElementById('colorPickerPopup').style.display = 'none';
+//             } 
+//             // check if several textbox
+//             else if (activeObject.type === 'activeSelection') {
+//                 // if all text box
+//                 var allText = activeObject.getObjects().every(obj => obj.type === 'i-text' || obj.type === 'textbox');
+//                 if (allText) {
+//                     document.getElementById('modifyPopup').style.display = 'block';
+//                     document.getElementById('colorPickerPopup').style.display = 'none';
+//                 } else {
+//                     // if have other element:
+//                     document.getElementById('modifyPopup').style.display = 'none';
+//                 }
+//             } else {
+//                 document.getElementById('colorPickerPopup').style.display = 'block';
+//                 document.getElementById('modifyPopup').style.display = 'none';
+//             }
+//         }
+//     });
+// });
 
 
-function modifySelectedText() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject && activeObject.type === 'i-text' || activeObject.type === 'textbox') {
-        var newText = document.getElementById('modifyTextArea').value;
-        var newTextColor = document.getElementById('modifyTextColor').value;
-        var newFont = document.getElementById('modifyFontSelector').value;
 
-        activeObject.set({
-            text: newText,
-            fill: newTextColor,
-            fontFamily: newFont
-        });
+// function openModifyPopup() {
+//     var activeObject = canvas.getActiveObject();
+//     if (activeObject && activeObject.type === 'i-text' || activeObject.type === 'textbox') {
+//         var modifyTextArea = document.getElementById('modifyTextArea');
+//         var modifyFontSelector = document.getElementById('modifyFontSelector');
 
-        //Redrawing Text 
-        activeObject.set("text", activeObject.text + " "); 
-        activeObject.set("text", activeObject.text.trim()); 
+//         modifyTextArea.value = activeObject.text;
+//         modifyFontSelector.value = activeObject.fontFamily || 'Arial'; 
+//         document.getElementById('modifyPopup').style.display = 'block';
+//     }
+// }
 
-        canvas.renderAll();
-        document.getElementById('modifyPopup').style.display = 'none';
-    }
-}
+
+// function modifySelectedText() {
+//     var activeObject = canvas.getActiveObject();
+//     if (activeObject && activeObject.type === 'i-text' || activeObject.type === 'textbox') {
+//         var newText = document.getElementById('modifyTextArea').value;
+//         var newTextColor = document.getElementById('modifyTextColor').value;
+//         var newFont = document.getElementById('modifyFontSelector').value;
+
+//         activeObject.set({
+//             text: newText,
+//             fill: newTextColor,
+//             fontFamily: newFont
+//         });
+
+//         //Redrawing Text 
+//         activeObject.set("text", activeObject.text + " "); 
+//         activeObject.set("text", activeObject.text.trim()); 
+
+//         canvas.renderAll();
+//         document.getElementById('modifyPopup').style.display = 'none';
+//     }
+// }
 
 function showBackgroundPopup() {
     var background = canvas.backgroundImage;
