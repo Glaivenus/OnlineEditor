@@ -81,7 +81,7 @@
 
             <button id="modifyBtn" onclick="openModifyPopup()"><span class="iconfont icon-bianji"></span>编辑选中</button>
 
-            <button id="alignButton">对齐</button>
+            <button id="alignButton"><span class="iconfont icon-duiqi-"></span>对齐</button>
 
 
 <!-- 
@@ -127,6 +127,9 @@
         <option value="MaShanZheng">MaShanZheng</option>
         <option value="Times New Roman">Times New Roman</option>
     </select>
+    <br>
+    字号：
+    <input type="number" id="fontSizeInput" placeholder="字号">
 
 
     <button onclick="modifySelectedText()">保存修改</button>
@@ -177,7 +180,7 @@
     <button id="alignTop">垂直对齐</button>
     <button id="alignCenter">垂直居中</button>
     <button id="alignHorizontal">水平居中</button>
-    
+    <button onclick="closepopup('alignPopup')" style="background-color: black;">取消</button>
 </div>
 
 

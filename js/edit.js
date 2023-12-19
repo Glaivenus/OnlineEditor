@@ -26,36 +26,51 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+
+    document.getElementById('modifyBtn').addEventListener('click', function() {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            if (activeObject.type === 'i-text' || activeObject.type === 'textbox') {
+                // 显示单个文本框的字号
+                document.getElementById('fontSizeInput').value = activeObject.fontSize;
+            } else if (activeObject.type === 'activeSelection') {
+                // 检查是否所有文本框的字号相同
+                var fontSize = activeObject.getObjects()[0].fontSize;
+                var allSameFontSize = activeObject.getObjects().every(obj => obj.fontSize === fontSize);
+    
+                document.getElementById('fontSizeInput').value = allSameFontSize ? fontSize : '';
+            }
+            // 显示弹窗
+            document.getElementById('modifyPopup').style.display = 'block';
+        }
+    });
+
+    
+    
 });
 
 function modifySelectedText() {
     var activeObject = canvas.getActiveObject();
-    // check is single textbox
-    if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
-        var newText = document.getElementById('modifyTextArea').value;
-        var newTextColor = document.getElementById('modifyTextColor').value;
-        var newFont = document.getElementById('modifyFontSelector').value;
+    var newText = document.getElementById('modifyTextArea').value;
+    var newTextColor = document.getElementById('modifyTextColor').value;
+    var newFont = document.getElementById('modifyFontSelector').value;
+    var newFontSize = parseInt(document.getElementById('fontSizeInput').value);
 
+    if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
         activeObject.set({
             text: newText,
             fill: newTextColor,
-            fontFamily: newFont
+            fontFamily: newFont,
+            fontSize: newFontSize
         });
-
-        // re draw
-        activeObject.set("text", activeObject.text + " "); 
-        activeObject.set("text", activeObject.text.trim()); 
-    }
-    // check if several textbox
-    else if (activeObject && activeObject.type === 'activeSelection') {
-        var newTextColor = document.getElementById('modifyTextColor').value;
-        var newFont = document.getElementById('modifyFontSelector').value;
-
+    } else if (activeObject && activeObject.type === 'activeSelection') {
         activeObject.forEachObject(function(obj) {
             if (obj.type === 'i-text' || obj.type === 'textbox') {
                 obj.set({
                     fill: newTextColor,
-                    fontFamily: newFont
+                    fontFamily: newFont,
+                    fontSize: newFontSize
                 });
             }
         });
@@ -64,3 +79,4 @@ function modifySelectedText() {
     canvas.renderAll();
     document.getElementById('modifyPopup').style.display = 'none';
 }
+
