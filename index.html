@@ -184,7 +184,7 @@
 </div>
 
 
-<script src="./js/touch.js"></script>
+
 <script>
     var canvas = new fabric.Canvas('pic1');
     canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
@@ -192,8 +192,8 @@
     fabric.IText.prototype.cursorColor = 'transparent';
 
 
-    canvas.setHeight(1090.8);
-    canvas.setWidth(777.6);
+    // canvas.setHeight(1090.8);
+    // canvas.setWidth(777.6);
 
     var defaultText = "双击我或选中后用编辑按钮进行修改"
 
@@ -271,7 +271,16 @@
     });
 
 
+    canvas.on('mouse:down', function(options) {
+    var pointer = canvas.getPointer(options.e);
+    console.log(pointer.x, pointer.y); // 打印鼠标点击的坐标
+});
+
+
+
+
 </script>
+<script src="./js/touch.js"></script>
 <script src="./js/changesize.js"></script>
 <script src="./js/stroke.js"></script>
 <script src="./js/undoredo.js"></script>

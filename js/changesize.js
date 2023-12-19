@@ -42,24 +42,29 @@ window.addEventListener('resize', adjustCanvasSize);
 
 
 function addElementToCanvas(object) {
-    // Save original!
-    object.originalScaleX = object.scaleX;
-    object.originalScaleY = object.scaleY;
-    object.originalLeft = object.left;
-    object.originalTop = object.top;
+
+    if (!object.originalScaleX) {
+        object.originalScaleX = object.scaleX;
+        object.originalScaleY = object.scaleY;
+        object.originalLeft = object.left;
+        object.originalTop = object.top;
+    }
 
     canvas.add(object);
 }
 
 
+
 function scaleCanvasObjects(scaleFactor) {
     canvas.getObjects().forEach(function(object) {
         object.set({
-            scaleX: object.scaleX * scaleFactor,
-            scaleY: object.scaleY * scaleFactor,
-            left: object.left * scaleFactor,
-            top: object.top * scaleFactor
+            scaleX: object.originalScaleX * scaleFactor,
+            scaleY: object.originalScaleY * scaleFactor,
+            left: object.originalLeft * scaleFactor,
+            top: object.originalTop * scaleFactor
         });
-        object.setCoords(); 
+        object.setCoords();
     });
 }
+
+canvas.renderAll();

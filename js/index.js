@@ -37,7 +37,7 @@ function addTextToCanvas() {
         var fabricText = new fabric.IText(text, {
             left: canvas.width / 2,
             top: canvas.height / 2.5,
-            fontSize: 20,
+            fontSize: 100,
             fill: textColor,
             fontFamily: selectedFont, 
             selectable: true,
@@ -233,7 +233,7 @@ function addDefaultText() {
     var fabricText = new fabric.Textbox(defaultText, {
         left: canvas.width / 2,
         top: canvas.height / 2,
-        fontSize: 20,
+        fontSize: 100,
         fill: textColor,
         fontFamily: selectedFont, 
         selectable: true,
@@ -253,7 +253,7 @@ function addtkText() {
     var fabricText = new fabric.IText('文本和图片请随意拖动', {
         left: canvas.width / 2,
         top: canvas.height / 2.5,
-        fontSize: 20,
+        fontSize: 100,
         fill: textColor,
         fontFamily: selectedFont, 
         selectable: true,

@@ -4,11 +4,12 @@
    
 }
 
+
 #pic1 {
     border: 1px solid black;
     width: 21.6cm; 
     height: 30.3cm; 
-    margin-top: 10.5vh
+
 }
 
 body {
@@ -36,7 +37,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 1.5em;
-    opacity: 80%;
+    opacity: 90%;
     color: #be69f0;
     border-radius: 10px;
     z-index: 1000;
@@ -104,7 +105,7 @@ button:hover {
 }
 
 .toolbox {
-    position: fixed;
+    position: block;
     height: 10vh;
     width: 100%;
     top: 0;
