@@ -36,39 +36,4 @@ var OpacityControl = (function() {
     };
 })();
 
-//add shapes
-document.getElementById('addShapeBtn').addEventListener('click', function() {
-    var shapeMenu = document.getElementById('shapeMenu');
-    shapeMenu.style.display = shapeMenu.style.display === 'none' ? 'block' : 'none';
-});
-
-function addShape(shapeType) {
-    var shape;
-    var cornerRadius = parseInt(document.getElementById('cornerRadiusInput').value) || 0;
-
-    switch (shapeType) {
-        case 'square':
-            shape = new fabric.Rect({ width: 50, height: 50, rx: cornerRadius, ry: cornerRadius });
-            break;
-        case 'rectangle':
-            shape = new fabric.Rect({ width: 100, height: 50, rx: cornerRadius, ry: cornerRadius });
-            break;
-        case 'triangle':
-            shape = new fabric.Triangle({ width: 50, height: 50 });
-            break;
-        case 'circle':
-            shape = new fabric.Circle({ radius: 25 });
-            break;
-        case 'star':
-            // 五角星的创建可能需要更复杂的逻辑
-            shape = createStar();
-            break;
-    }
-
-    canvas.add(shape);
-}
-
-function createStar() {
-    // 创建五角星的逻辑（需要自行实现）
-}
 

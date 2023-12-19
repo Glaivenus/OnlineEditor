@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     
-    
+
 });
 
 function modifySelectedText() {
@@ -57,24 +57,29 @@ function modifySelectedText() {
     var newFont = document.getElementById('modifyFontSelector').value;
     var newFontSize = parseInt(document.getElementById('fontSizeInput').value);
 
-    if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
-        activeObject.set({
-            text: newText,
-            fill: newTextColor,
-            fontFamily: newFont,
-            fontSize: newFontSize
-        });
-    } else if (activeObject && activeObject.type === 'activeSelection') {
-        activeObject.forEachObject(function(obj) {
-            if (obj.type === 'i-text' || obj.type === 'textbox') {
-                obj.set({
-                    fill: newTextColor,
-                    fontFamily: newFont,
-                    fontSize: newFontSize
-                });
-            }
-        });
+if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
+    var updateOptions = {
+        fill: newTextColor,
+        fontFamily: newFont,
+        fontSize: newFontSize
+    };
+    // 仅当 newText 非空时更新文本内容
+    if (newText.trim() !== "") {
+        updateOptions.text = newText;
     }
+    activeObject.set(updateOptions);
+} else if (activeObject && activeObject.type === 'activeSelection') {
+    activeObject.forEachObject(function(obj) {
+        if (obj.type === 'i-text' || obj.type === 'textbox') {
+            obj.set({
+                fill: newTextColor,
+                fontFamily: newFont,
+                fontSize: newFontSize
+            });
+        }
+    });
+}
+
 
     canvas.renderAll();
     document.getElementById('modifyPopup').style.display = 'none';
