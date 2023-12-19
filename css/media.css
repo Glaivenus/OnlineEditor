@@ -24,8 +24,8 @@
     .popup {
         display: none;
         position: fixed;
-        top: 19em;
-        height: 30em;
+        bottom:0;
+        height: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80vw;
@@ -35,6 +35,10 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
+
+    .popup button {
+        bottom: 10;
+    }
     #thumbnailContainer {
         display: flex;
         flex-wrap: wrap;
@@ -62,4 +66,9 @@
     #mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn {
         font-size: 1.8vh;
     }
+
+    #modifyTextArea {
+        height:  40%;
+    }
+
 }

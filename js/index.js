@@ -40,16 +40,26 @@ function addTextToCanvas() {
             fontSize: 20,
             fill: textColor,
             fontFamily: selectedFont, 
-            selectable: true
+            selectable: true,
+            dynamicMinWidth: 50,
+            splitByGrapheme: false // 确保文本不自动换行
         });
+
+        // 文本变化时调整文本框宽度
+        fabricText.on('changed', function() {
+            var textWidth = fabricText.calcTextWidth();
+            fabricText.set('width', Math.max(fabricText.dynamicMinWidth, textWidth));
+            canvas.requestRenderAll();
+        });
+
         canvas.add(fabricText);
         canvas.bringToFront(fabricText);
         document.getElementById('addTextPopup').style.display = 'none';
         closeAddTextPopup();
     }
-
-    
 }
+
+
 
 
 function closeAddTextPopup() {
@@ -67,6 +77,29 @@ function deleteSelectedObject() {
         canvas.remove(activeObject);
     }
 }
+
+
+
+//edit text / shapes
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.getElementById('modifyBtn').addEventListener('click', function() {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            // check if Itext or textbox
+            if (activeObject.type === 'i-text' || activeObject.type === 'textbox') {
+                document.getElementById('modifyPopup').style.display = 'block';
+                document.getElementById('colorPickerPopup').style.display = 'none';
+            } else {
+                document.getElementById('colorPickerPopup').style.display = 'block';
+                document.getElementById('modifyPopup').style.display = 'none';
+            }
+        }
+    });
+    
+
+});
+
 
 
 function openModifyPopup() {
@@ -113,7 +146,7 @@ function showBackgroundPopup() {
         opacitySlider.value = background.opacity;
         opacityValue.textContent = Math.round(background.opacity * 100) + '%';
     } else {
-        opacitySlider.value = 1; // 默认透明度为 100%
+        opacitySlider.value = 1; 
         opacityValue.textContent = '100%';
     }
 
@@ -189,16 +222,16 @@ function addDefaultText() {
     var textColor = '#000000'; 
     var selectedFont = 'Arial'; 
     var fabricText = new fabric.Textbox(defaultText, {
-        left: canvas.width / 7.3,
-        top: canvas.height / 2.6,
-        fontSize: 35,
+        left: canvas.width / 2,
+        top: canvas.height / 2,
+        fontSize: 20,
         fill: textColor,
         fontFamily: selectedFont, 
         selectable: true,
-        wordWrap: true,
-        splitByGrapheme: true,
-        width: canvas.width * 0.8,
+        dynamicMinWidth: 50,
+        splitByGrapheme: false
     });
+    
 
     canvas.add(fabricText);
     canvas.bringToFront(fabricText);
@@ -209,12 +242,14 @@ function addtkText() {
     var textColor = '#E0111A'; 
     var selectedFont = 'Ephesis'; 
     var fabricText = new fabric.IText('文本和图片请随意拖动', {
-        left: canvas.width / 13,
-        top: canvas.height / 1.5,
-        fontSize: 50,
+        left: canvas.width / 2,
+        top: canvas.height / 2.5,
+        fontSize: 20,
         fill: textColor,
         fontFamily: selectedFont, 
-        selectable: true
+        selectable: true,
+        dynamicMinWidth: 50,
+        splitByGrapheme: false
     });
 
     canvas.add(fabricText);
