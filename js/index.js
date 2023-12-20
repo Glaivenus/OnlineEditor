@@ -32,12 +32,13 @@ function addTextToCanvas() {
     var text = document.getElementById('textArea').value;
     var textColor = document.getElementById('textColor').value;
     var selectedFont = document.getElementById('fontSelector').value;
+    var fontsizee = document.getElementById('fontsizee').value;
 
     if (text.trim() !== "") {
         var fabricText = new fabric.IText(text, {
             left: canvas.width / 2,
             top: canvas.height / 2.5,
-            fontSize: 100,
+            fontSize: fontsizee,
             fill: textColor,
             fontFamily: selectedFont, 
             selectable: true,
