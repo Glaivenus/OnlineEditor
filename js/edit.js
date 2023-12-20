@@ -2,7 +2,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('modifyBtn').addEventListener('click', function() {
         var activeObject = canvas.getActiveObject();
-        if (activeObject) {
+        if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
+            document.getElementById('modifyTextArea').value = activeObject.text;
             // Check if single textbox
             if (activeObject.type === 'i-text' || activeObject.type === 'textbox') {
                 document.getElementById('modifyPopup').style.display = 'block';
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             else if (activeObject.type === 'activeSelection') {
                 // if all text box
                 var allText = activeObject.getObjects().every(obj => obj.type === 'i-text' || obj.type === 'textbox');
-                if (allText) {
+                if (allText) {      
                     document.getElementById('modifyPopup').style.display = 'block';
                     document.getElementById('colorPickerPopup').style.display = 'none';
                     document.getElementById('modifyTextArea').style.display = 'none';
@@ -57,29 +58,28 @@ function modifySelectedText() {
     var newFont = document.getElementById('modifyFontSelector').value;
     var newFontSize = parseInt(document.getElementById('fontSizeInput').value);
 
-if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
-    var updateOptions = {
-        fill: newTextColor,
-        fontFamily: newFont,
-        fontSize: newFontSize
-    };
-    // 仅当 newText 非空时更新文本内容
-    if (newText.trim() !== "") {
-        updateOptions.text = newText;
-    }
-    activeObject.set(updateOptions);
-} else if (activeObject && activeObject.type === 'activeSelection') {
-    activeObject.forEachObject(function(obj) {
-        if (obj.type === 'i-text' || obj.type === 'textbox') {
-            obj.set({
-                fill: newTextColor,
-                fontFamily: newFont,
-                fontSize: newFontSize
-            });
+    if (activeObject && (activeObject.type === 'i-text' || activeObject.type === 'textbox')) {
+        var updateOptions = {
+            fill: newTextColor,
+            fontFamily: newFont,
+            fontSize: newFontSize
+        };
+        // 仅当 newText 非空时更新文本内容
+        if (newText.trim() !== "") {
+            updateOptions.text = newText;
         }
-    });
-}
-
+        activeObject.set(updateOptions);
+    } else if (activeObject && activeObject.type === 'activeSelection') {
+        activeObject.forEachObject(function(obj) {
+            if (obj.type === 'i-text' || obj.type === 'textbox') {
+                obj.set({
+                    fill: newTextColor,
+                    fontFamily: newFont,
+                    fontSize: newFontSize
+                });
+            }
+        });
+    }
 
     canvas.renderAll();
     document.getElementById('modifyPopup').style.display = 'none';
