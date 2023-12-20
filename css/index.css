@@ -138,7 +138,9 @@ button:hover {
 }
 
 
-#mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn, #alignButton {
+#mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn, #alignButton,
+#layerButton
+{
     /* padding: 1vh 1vh 1vw 1vw; */
     font-size: 2vh;
     text-align: center;   
@@ -213,4 +215,22 @@ button:hover {
 #alignPopup button {
     display: block;
     width: auto;
+}
+
+
+
+#Layerpopup {
+    position: fixed;
+    display: flex;
+    bottom: 10px;
+    right: 10%;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
 }

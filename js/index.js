@@ -193,9 +193,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 fabric.Image.fromURL(event.target.result, function (img) {
                     var imgRatio = img.width / img.height;
-                    var canvasRatio = canvas.width / canvas.height;
-                    var scale = canvasRatio >= imgRatio ? canvas.height / img.height : canvas.width / img.width;
-
+                
+                    var maxWidth = window.innerWidth;
+                    var newCanvasWidth = Math.min(img.width, maxWidth);
+                    var newCanvasHeight = newCanvasWidth / imgRatio;
+                
+                    canvas.setWidth(newCanvasWidth);
+                    canvas.setHeight(newCanvasHeight);
+                
+                    var scale = newCanvasWidth / img.width;
+                
                     img.set({
                         opacity: currentOpacity,
                         originX: 'left',
@@ -203,12 +210,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         scaleX: scale,
                         scaleY: scale
                     });
-
-                    
+                
                     canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
-                    scaleCanvasObjects(scale); // Adjust elements
+                    scaleCanvasObjects(scale); 
                     canvas.renderAll();
                 });
+                
             };
 
             reader.readAsDataURL(e.target.files[0]); 
@@ -225,6 +232,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 100);
     });
 });
+
+
+
+function scaleCanvasObjects(scale) {
+    canvas.getObjects().forEach(function(object) {
+        object.set({
+            left: object.left * scale,
+            top: object.top * scale,
+            scaleX: object.scaleX * scale,
+            scaleY: object.scaleY * scale
+        });
+        object.setCoords();
+    });
+}
+
 
 
 // Default Text

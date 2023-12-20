@@ -52,7 +52,7 @@
                 <button onclick="addShape('triangle')">三角形</button>
                 <button onclick="addShape('circle')">圆形</button>
                 <button onclick="addShape('star')">五角星</button>
-                <button onclick="closeShapePopup()">关闭</button>
+                <button onclick="closeShapePopup()" style="background: #000;">关闭</button>
             </div>
 
         </div>
@@ -83,7 +83,7 @@
 
             <button id="alignButton"><span class="iconfont icon-duiqi-"></span>对齐</button>
 
-
+            <button id="layerButton"><span class="iconfont icon-duiqi-"></span>图层<br>操作</button>
 <!-- 
             <button onclick="undoOperate()">撤销</button>
             <button onclick="redoOperate()">重做</button> -->
@@ -185,6 +185,17 @@
 
 
 
+<div id ="Layerpopup" class="popup" style="display: none;">
+    <button id="bringToFront">置于顶层</button>
+    <button id="sendToBack">置于底层</button>
+    <button id="bringForward">向前一图层</button>
+    <button id="sendBackwards">向后一图层</button>
+
+    <button onclick="closepopup('Layerpopup')" style="background-color: black;">取消</button>
+
+</div>
+
+
 <script>
     var canvas = new fabric.Canvas('pic1');
     canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
@@ -277,7 +288,7 @@
 });
 
 
-
+addTextToCanvas("请随意输入")
 
 </script>
 <script src="./js/touch.js"></script>
@@ -287,6 +298,7 @@
 <script src="./js/shapes.js"></script>
 <script src="./js/popup.js"></script>
 <script src="./js/edit.js"></script>
+<script src="./js/layer.js"></script>
 
 
 </body>
