@@ -9,6 +9,7 @@
     border: 1px solid black;
     width: 21.6cm; 
     height: 30.3cm; 
+    overflow: auto;
 
 }
 
@@ -234,3 +235,5 @@ button:hover {
     width: auto;
     height: auto;
 }
+
+
