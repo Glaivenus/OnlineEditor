@@ -9,10 +9,13 @@
 
 
     #addMenu {
+        position: absolute;
+        top: 10%;
         width: 40%; 
         padding: 10px; 
         border-radius: 0 0 0.5em 0.5em;
         background-color: #1d1d1d;
+        z-index: 1000;
 
     }
 
@@ -61,8 +64,10 @@
     }
 
 
-    #mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn {
-        font-size: 1.8vh;
+    #mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn#mainMenuBtn, #changeBackgroundBtn, #modifyBtn, #deleteBtn, #downloadBtn, #alignButton,
+    #layerButton
+    {
+        font-size: 1.3vh;
     }
 
     #modifyTextArea {

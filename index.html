@@ -110,8 +110,8 @@
 
 
 
-    <button id="zoomInBtn">放大</button>
-<button id="zoomOutBtn">缩小</button>
+    <!-- <button id="zoomInBtn">放大</button>
+<button id="zoomOutBtn">缩小</button> -->
 
 
     <button id="downloadBtn" style="z-index: 999;background-color: rgb(173, 46, 46);color: white; margin-left: 5%;"><span class="iconfont icon-xiazaidaoru"></span>下载</button>
@@ -215,7 +215,7 @@
     canvas.setHeight(1090.8);
     canvas.setWidth(777.6);
 
-    var defaultText = "双击我或选中后用编辑按钮进行修改"
+    var defaultText = "Thank you!"
 
     var currentBackground = 0;
     var thumbnailsPerPage = 4;
@@ -279,7 +279,7 @@
 
     function showBackgroundPopup() {
     document.getElementById('backgroundCategory').value = currentCategory;
-    document.getElementById('backgroundPopup').style.display = 'block';
+    document.getElementById('backgroundPopup').style.display = 'bl  ock';
     updateBackgroundThumbnails(currentCategory);
     }
 
@@ -297,11 +297,14 @@
 });
 
 
-addTextToCanvas("请随意输入")
+
+
+
+
 
 </script>
 <script src="./js/touch.js"></script>
-<!-- <script src="./js/changesize.js"></script> -->
+<script src="./js/changesize.js"></script>
 <script src="./js/stroke.js"></script>
 <script src="./js/undoredo.js"></script>
 <script src="./js/shapes.js"></script>

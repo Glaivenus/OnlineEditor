@@ -68,3 +68,5 @@ function scaleCanvasObjects(scaleFactor) {
 }
 
 canvas.renderAll();
+addDefault();
+

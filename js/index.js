@@ -36,7 +36,7 @@ function addTextToCanvas() {
 
     if (text.trim() !== "") {
         var fabricText = new fabric.IText(text, {
-        left: canvas.width / 2,
+        left: canvas.width / 8,
         top: canvas.height / 2.5,
         fontSize: fontsizee,
         fill: textColor,
@@ -267,6 +267,7 @@ function addDefaultText() {
 
     canvas.add(fabricText);
     canvas.bringToFront(fabricText);
+    
 }
 
 //thank you
@@ -288,7 +289,10 @@ function addtkText() {
     canvas.bringToFront(fabricText);
 }
 
-
+function addDefault() {
+    addtkText();
+    addDefaultText();
+}
 
 
 function closeBackgroundPopup() {
