@@ -36,14 +36,14 @@ function addTextToCanvas() {
 
     if (text.trim() !== "") {
         var fabricText = new fabric.IText(text, {
-            left: canvas.width / 2,
-            top: canvas.height / 2.5,
-            fontSize: fontsizee,
-            fill: textColor,
-            fontFamily: selectedFont, 
-            selectable: true,
-            dynamicMinWidth: 50,
-            splitByGrapheme: false // 确保文本不自动换行
+        left: canvas.width / 2,
+        top: canvas.height / 2.5,
+        fontSize: fontsizee,
+        fill: textColor,
+        fontFamily: selectedFont, 
+        selectable: true,
+        dynamicMinWidth: 50,
+        splitByGrapheme: false // 确保文本不自动换行
         });
 
         // 文本变化时调整文本框宽度
@@ -254,7 +254,7 @@ function addDefaultText() {
     var textColor = '#000000'; 
     var selectedFont = 'Arial'; 
     var fabricText = new fabric.Textbox(defaultText, {
-        left: canvas.width / 2,
+        left: canvas.width / 7,
         top: canvas.height / 2,
         fontSize: 40,
         fill: textColor,

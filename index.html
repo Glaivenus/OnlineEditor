@@ -63,7 +63,7 @@
         <div id="addTextPopup" class="popup" style="display: none;">Color:
             <input type="color" id="textColor" value="#000000" style="height: 5vh; width: 10vh;">
             <textarea id="textArea" placeholder="请输入..." style="width: 90%;" ></textarea>
-            <textarea id="fontsizee" placeholder="字号" style="height: 2vh; width: 4vh;"></textarea>
+            <input id="fontsizee" placeholder="字号" type="number" value="30" style="height: 2vh; width: 4vh;">
             <select id="fontSelector">
                 <option value="Arial">Arial</option>
                 <option value="Ephesis">Ephesis</option>
@@ -111,7 +111,7 @@
 
 
     <button id="zoomInBtn">放大</button>
-    <button id="zoomOutBtn">缩小</button>
+<button id="zoomOutBtn">缩小</button>
 
 
     <button id="downloadBtn" style="z-index: 999;background-color: rgb(173, 46, 46);color: white; margin-left: 5%;"><span class="iconfont icon-xiazaidaoru"></span>下载</button>
@@ -212,8 +212,8 @@
     fabric.IText.prototype.cursorColor = 'transparent';
 
 
-    // canvas.setHeight(1090.8);
-    // canvas.setWidth(777.6);
+    canvas.setHeight(1090.8);
+    canvas.setWidth(777.6);
 
     var defaultText = "双击我或选中后用编辑按钮进行修改"
 
@@ -301,7 +301,7 @@ addTextToCanvas("请随意输入")
 
 </script>
 <script src="./js/touch.js"></script>
-<script src="./js/changesize.js"></script>
+<!-- <script src="./js/changesize.js"></script> -->
 <script src="./js/stroke.js"></script>
 <script src="./js/undoredo.js"></script>
 <script src="./js/shapes.js"></script>
