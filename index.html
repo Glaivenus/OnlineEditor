@@ -32,30 +32,6 @@
         <!-- submenu -->
         <button id="mainMenuBtn"><span class="iconfont icon-icon_tianjia"></span>添加</button>
 
-        <div id="addMenu" style="display: none;">
-            <button id="addTextBtn">文字</button>
-            
-            
-            <input type="file" id="uploadImage" hidden />
-            <button onclick="document.getElementById('uploadImage').click();">图片</button>
-
-
-            <!-- <button id="addLogoBtn" onclick="addLogoToCanvas()">LOGO(还没做)</button> -->
-
-            <button id="addShapeBtn">图形</button>
-            <div id="shapePopup" class="popup" style="display: none;">
-                <button onclick="addShape('square')">正方形</button>
-                <button onclick="addShape('rectangle')">长方形</button>
-                
-                <input type="number" id="cornerRadiusInput" placeholder="圆角角度" style="width: 80%;">
-
-                <button onclick="addShape('triangle')">三角形</button>
-                <button onclick="addShape('circle')">圆形</button>
-                <button onclick="addShape('star')">五角星</button>
-                <button onclick="closeShapePopup()" style="background: #000;">关闭</button>
-            </div>
-
-        </div>
 
         
 
@@ -109,6 +85,8 @@
     </div>
 
 
+
+    
 
     <!-- <button id="zoomInBtn">放大</button>
 <button id="zoomOutBtn">缩小</button> -->
