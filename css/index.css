@@ -126,7 +126,16 @@ button:hover {
 
 
 
+#addMenu {
+    position: absolute;
+    top: 10%;
+    width: 10%; 
+    padding: 10px; 
+    border-radius: 0 0 0.5em 0.5em;
+    background-color: #1d1d1d;
+    z-index: 1000;
 
+}
 
 #addMenu button {
     font-size: 1.2em;

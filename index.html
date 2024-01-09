@@ -32,7 +32,7 @@
         <!-- submenu -->
         <button id="mainMenuBtn"><span class="iconfont icon-icon_tianjia"></span>添加</button>
 
-        <div id="addMenu" style="display: none; position: absolute;">
+        <div id="addMenu" style="display: none; position: abs;">
             <button id="addTextBtn">文字</button>
             
             
@@ -227,9 +227,9 @@
     }
 
 
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     setDefaultBackground();
-    // });
+    document.addEventListener('DOMContentLoaded', function () {
+        setDefaultBackground();
+    });
 
 
     updateBackgroundThumbnails();
@@ -279,7 +279,7 @@
 
     function showBackgroundPopup() {
     document.getElementById('backgroundCategory').value = currentCategory;
-    document.getElementById('backgroundPopup').style.display = 'bl  ock';
+    document.getElementById('backgroundPopup').style.display = 'block';
     updateBackgroundThumbnails(currentCategory);
     }
 
