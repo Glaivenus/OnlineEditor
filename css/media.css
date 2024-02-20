@@ -74,4 +74,11 @@
         height:  40%;
     }
 
+    #deleteBtn {
+        position: absolute;
+        right: 3vw;
+        text-align: center;
+    }
+    
+
 }

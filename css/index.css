@@ -167,8 +167,7 @@ button:hover {
 
 
 #deleteBtn {
-    position: absolute;
-    right: 3vw;
+    /* position: absolute; */
     text-align: center;
 }
 
