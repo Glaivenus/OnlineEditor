@@ -1,6 +1,7 @@
 # OnlineEditor
 ## Overview
 This project is a web-based application designed to provide a dynamic and interactive experience for creating and editing images with text overlays and custom backgrounds. Utilizing technologies like Fabric.js for canvas manipulation and incorporating a responsive design, it's perfect for both desktop and mobile users.
+Have more functions then my previous greeting cards editor.
 
 ## Features
 - **Dynamic Image Editing**: Easily add, edit, or remove text overlays on images.
