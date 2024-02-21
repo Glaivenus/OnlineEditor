@@ -9,5 +9,8 @@ Have more functions than my previous greeting cards editor.
 - **Responsive Design**: Adapt to any screen size, ensuring a seamless experience on all devices.
 - **Interactive Canvas**: Utilize tools like zoom, pan, and object manipulation for detailed editing.
 
-## Getting Started
+## Getting Started (Chinese中文）
 https://glaivenus.github.io/OnlineEditor/
+
+## Previous Greeting Card Editor (English)
+https://glaivenus.github.io/Greeting-card-Editor/
